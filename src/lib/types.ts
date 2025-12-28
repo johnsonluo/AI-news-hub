@@ -1,4 +1,14 @@
-export type Category = 'LLM' | 'Computer Vision' | 'Industry' | 'Research' | 'Tools';
+export type Category = 
+  | 'LLM' 
+  | 'Vision' 
+  | 'Audio'
+  | 'Multimodal'
+  | 'Research' 
+  | 'Industry' 
+  | 'Tools'
+  | 'Hardware'
+  | 'Applications';
+
 
 export interface NewsItem {
   id: string;

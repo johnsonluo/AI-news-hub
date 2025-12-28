@@ -28,7 +28,11 @@ function determineCategory(title: string, content: string): Category {
   const text = (title + content).toLowerCase();
   
   if (text.includes('gpt') || text.includes('llm') || text.includes('大模型') || text.includes('claude') || text.includes('llama')) return 'LLM';
-  if (text.includes('vision') || text.includes('image') || text.includes('video') || text.includes('midjourney') || text.includes('sora') || text.includes('视觉')) return 'Computer Vision';
+  if (text.includes('vision') || text.includes('image') || text.includes('video') || text.includes('midjourney') || text.includes('sora') || text.includes('视觉')) return 'Vision';
+  if (text.includes('audio') || text.includes('voice') || text.includes('music') || text.includes('speech') || text.includes('tts') || text.includes('suno') || text.includes('语音') || text.includes('音频')) return 'Audio';
+  if (text.includes('multimodal') || text.includes('gemini') || text.includes('4o') || text.includes('多模态')) return 'Multimodal';
+  if (text.includes('gpu') || text.includes('nvidia') || text.includes('chip') || text.includes('hardware') || text.includes('芯片') || text.includes('算力')) return 'Hardware';
+  if (text.includes('copilot') || text.includes('agent') || text.includes('app') || text.includes('application') || text.includes('应用')) return 'Applications';
   if (text.includes('paper') || text.includes('research') || text.includes('arxiv') || text.includes('论文') || text.includes('研究')) return 'Research';
   if (text.includes('tool') || text.includes('framework') || text.includes('langchain') || text.includes('library') || text.includes('工具')) return 'Tools';
   
@@ -55,7 +59,16 @@ async function processNewsWithLLM(title: string, content: string, client: OpenAI
           role: "system", 
           content: `You are an AI news editor. Your task is to process a tech news item.
 1. Translate the title and summary to simplified Chinese (if they are not already).
-2. Classify the news into ONE of these categories: 'LLM', 'Computer Vision', 'Industry', 'Research', 'Tools'.
+2. Classify the news into ONE of these categories: 
+   - 'LLM' (Large Language Models)
+   - 'Vision' (Computer Vision, Image/Video Generation)
+   - 'Audio' (Speech, Music, Audio Generation)
+   - 'Multimodal' (Multi-modal models like GPT-4o)
+   - 'Industry' (Business news, Funding, Regulation)
+   - 'Research' (Papers, Algorithms, Theory)
+   - 'Tools' (Frameworks, Libraries, Developer Tools)
+   - 'Hardware' (GPUs, Chips, Infrastructure)
+   - 'Applications' (AI Apps, Copilots, Agents)
 
 Return ONLY a JSON object with this structure:
 {
@@ -77,7 +90,17 @@ Return ONLY a JSON object with this structure:
     const result = JSON.parse(completion.choices[0].message.content || '{}');
     
     // 验证返回的 category 是否合法
-    const validCategories: Category[] = ['LLM', 'Computer Vision', 'Industry', 'Research', 'Tools'];
+    const validCategories: Category[] = [
+      'LLM', 
+      'Vision', 
+      'Audio', 
+      'Multimodal', 
+      'Industry', 
+      'Research', 
+      'Tools', 
+      'Hardware', 
+      'Applications'
+    ];
     let category: Category = 'Industry';
     if (validCategories.includes(result.category)) {
       category = result.category as Category;

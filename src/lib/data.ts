@@ -1,14 +1,29 @@
 import { NewsItem, DailySummary } from './types';
 
-export const CATEGORIES: ('All' | import('./types').Category)[] = ['All', 'LLM', 'Computer Vision', 'Industry', 'Research', 'Tools'];
+export const CATEGORIES: ('All' | import('./types').Category)[] = [
+  'All', 
+  'LLM', 
+  'Vision', 
+  'Audio', 
+  'Multimodal', 
+  'Industry', 
+  'Research', 
+  'Tools',
+  'Hardware',
+  'Applications'
+];
 
 export const CATEGORY_MAP: Record<string, string> = {
   'All': '全部',
   'LLM': '大语言模型',
-  'Computer Vision': '计算机视觉',
+  'Vision': '计算机视觉',
+  'Audio': '语音与音频',
+  'Multimodal': '多模态',
   'Industry': '行业动态',
   'Research': '前沿研究',
-  'Tools': '工具框架'
+  'Tools': '工具框架',
+  'Hardware': '硬件算力',
+  'Applications': 'AI 应用'
 };
 
 export const MOCK_NEWS: NewsItem[] = [
@@ -19,7 +34,7 @@ export const MOCK_NEWS: NewsItem[] = [
     url: 'https://openai.com/index/hello-gpt-4o/',
     source: 'OpenAI Blog',
     date: new Date().toISOString(),
-    category: 'LLM',
+    category: 'Multimodal',
     imageUrl: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&q=80&w=800'
   },
   {
@@ -39,7 +54,7 @@ export const MOCK_NEWS: NewsItem[] = [
     url: 'https://nvidianews.nvidia.com/news/nvidia-blackwell-platform-arrives-to-power-a-new-era-of-computing',
     source: 'NVIDIA News',
     date: new Date().toISOString(),
-    category: 'Industry',
+    category: 'Hardware',
     imageUrl: 'https://images.unsplash.com/photo-1591488320449-011701bb6704?auto=format&fit=crop&q=80&w=800'
   },
   {
@@ -49,7 +64,7 @@ export const MOCK_NEWS: NewsItem[] = [
     url: 'https://www.midjourney.com/home',
     source: 'Midjourney',
     date: new Date().toISOString(),
-    category: 'Computer Vision',
+    category: 'Vision',
     imageUrl: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&q=80&w=800'
   },
   {
