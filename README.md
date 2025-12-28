@@ -39,3 +39,4 @@ A daily AI news aggregator and summary generator built with Next.js, Tailwind CS
 - Lucide React (Icons)
 - html2canvas (Image generation)
 - Day.js (Date formatting)
+ 
